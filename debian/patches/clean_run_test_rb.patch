@@ -1,0 +1,31 @@
+Description: Clean a little bit test/run-test.rb
+ - remove requirements on rubygems and bundler
+ - we know where to find make
+ N.B.: currently test/run-test.rb is not called with debian/ruby-tests.rake
+Origin: vendor
+Last-Update: 2012-06-04
+
+--- ruby-cairo-1.12.1.orig/test/run-test.rb
++++ ruby-cairo-1.12.1/test/run-test.rb
+@@ -5,14 +5,14 @@ ext_dir = File.join(base_dir, "ext", "ca
+ lib_dir = File.join(base_dir, "lib")
+ test_dir = File.join(base_dir, "test")
+ 
+-if system("which make >/dev/null 2>&1")
+-  Dir.chdir(base_dir) do
+-    system("make > /dev/null") or exit(1)
+-  end
+-end
++#if system("which make >/dev/null 2>&1")
++#  Dir.chdir(base_dir) do
++#    system("make > /dev/null") or exit(1)
++#  end
++#end
+ 
+-require 'rubygems'
+-require 'bundler/setup'
++#require 'rubygems'
++#require 'bundler/setup'
+ require 'test-unit'
+ 
+ $LOAD_PATH.unshift(base_dir)

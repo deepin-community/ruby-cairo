@@ -1,0 +1,3 @@
+#clean_run_test_rb.patch
+do-not-use-native-package-installer.patch
+do-not-use-packnga.patch

@@ -1,0 +1,9 @@
+#!/usr/bin/make -f
+
+export DH_RUBY_IGNORE_TESTS=all
+
+%:
+	dh $@ --buildsystem=ruby --with ruby
+
+override_dh_installchangelogs:
+	dh_installchangelogs NEWS

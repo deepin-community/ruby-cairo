@@ -1,0 +1,17 @@
+Description: do not use packnga
+Author: HIGUCHI Daisuke (VDR dai) <dai@debian.org>
+Forwarded: not-needed
+Last-Update: 2017-07-19
+
+Index: ruby-cairo/cairo.gemspec
+===================================================================
+--- ruby-cairo.orig/cairo.gemspec
++++ ruby-cairo/cairo.gemspec
+@@ -38,7 +38,6 @@ Gem::Specification.new do |s|
+   s.add_runtime_dependency("pkg-config", ">= 1.2.2")
+   s.add_development_dependency("bundler")
+   s.add_development_dependency("test-unit")
+-  s.add_development_dependency("packnga")
+   s.add_development_dependency("poppler", ">= 3.1.1")
+ 
+   s.metadata["msys2_mingw_dependencies"] = "cairo"

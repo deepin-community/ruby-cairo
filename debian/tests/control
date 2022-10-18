@@ -1,0 +1,3 @@
+Tests: run-test
+Depends: @, gem2deb-test-runner, rake, ruby-poppler, ruby-pkg-config, ruby-test-unit, ruby-test-unit-notify, quilt
+Restrictions: allow-stderr

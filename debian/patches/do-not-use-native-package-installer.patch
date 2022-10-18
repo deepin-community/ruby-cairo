@@ -1,0 +1,55 @@
+Description: do not use native-package-installer
+Author: HIGUCHI Daisuke (VDR dai) <dai@debian.org>
+Forwarded: not-needed
+Last-Update: 2019-03-13
+
+Index: ruby-cairo/ext/cairo/extconf.rb
+===================================================================
+--- ruby-cairo.orig/ext/cairo/extconf.rb
++++ ruby-cairo/ext/cairo/extconf.rb
+@@ -7,7 +7,6 @@ require 'mkmf'
+ require 'fileutils'
+ 
+ require "pkg-config"
+-require "native-package-installer"
+ 
+ checking_for(checking_message("GCC")) do
+   if macro_defined?("__GNUC__", "")
+@@ -22,17 +21,6 @@ package = "cairo"
+ module_name = "cairo"
+ major, minor, micro = 1, 2, 0
+ 
+-checking_for(checking_message("Homebrew")) do
+-  platform = NativePackageInstaller::Platform.detect
+-  if platform.is_a?(NativePackageInstaller::Platform::Homebrew)
+-    libffi_prefix = `brew --prefix libffi`.chomp
+-    PKGConfig.add_path("#{libffi_prefix}/lib/pkgconfig")
+-    true
+-  else
+-    false
+-  end
+-end
+-
+ def required_pkg_config_package(package_info, native_package_info=nil)
+   if package_info.is_a?(Array)
+     required_package_info = package_info
+@@ -42,7 +30,6 @@ def required_pkg_config_package(package_
+   return true if PKGConfig.have_package(*required_package_info)
+ 
+   native_package_info ||= {}
+-  return false unless NativePackageInstaller.install(native_package_info)
+ 
+   PKGConfig.have_package(*required_package_info)
+ end
+Index: ruby-cairo/cairo.gemspec
+===================================================================
+--- ruby-cairo.orig/cairo.gemspec
++++ ruby-cairo/cairo.gemspec
+@@ -36,7 +36,6 @@ Gem::Specification.new do |s|
+   s.extra_rdoc_files = ["README.rdoc"]
+ 
+   s.add_runtime_dependency("pkg-config", ">= 1.2.2")
+-  s.add_runtime_dependency("native-package-installer", ">= 1.0.3")
+   s.add_development_dependency("bundler")
+   s.add_development_dependency("test-unit")
+   s.add_development_dependency("packnga")
